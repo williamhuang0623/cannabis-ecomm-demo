@@ -1,0 +1,8 @@
+Blue Dream,bluedream.jpeg,0,10,bluedream,
+Death Star,deathstar.jpg,0,10,deathstar,
+Granddaddy,grandpa.jpg,0,10,granddaddy,
+Northern Lights,northernlights.jpg,10,10,northernlights,
+Paris OG,parisog.jpg,20,250,parisog,
+Pineapple Express,pineapple.jpg,20,260,pineappleexpress,
+Snoop OG,snoopog.jpg,20,240,snoopog,
+Lemon Haze,lemon.jpg,20,240,lemonhaze,
