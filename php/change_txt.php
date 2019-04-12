@@ -12,18 +12,18 @@ ini_set('display_errors', true);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="shopping.css" rel="stylesheet" type="text/css">
 </head>
-    
+
 <body>
 <header>
     <img src="../img/logo.png">
 </header>
 <div class="jumbotron">
-    <h1>Cannabis Shopping Cart</h1> 
+    <h1>Cannabis Shopping Cart</h1>
 </div>
 <?php
     $file = fopen("../info.txt", "r+");
     $output = fopen("../output.txt", "w+");
-    
+
     while (!feof($file)) {
         $line = fgets($file);
         if ($line != "") {
@@ -50,14 +50,14 @@ ini_set('display_errors', true);
     }
     fclose($file);
     fclose($output);
-    
+
     //writing output file back to original file
     $info_file = fopen("../info.txt", "w");
     $input = fopen("../output.txt", "r");
     while (!feof($input)) {
         $line = fgets($input);
         if ($line != "") {
-            fwrite($info_file, $line); 
+            fwrite($info_file, $line);
         }
     }
     fclose($info_file);
@@ -67,7 +67,7 @@ ini_set('display_errors', true);
     <div class="row">
         <div class="col-sm-12">
         <h4>Your input has been recorded!</h4>
-        <a href="index.php"><button id="button">Go To Shopping Cart</button></a>
+        <a href="../main.php"><button id="button">Go To Shopping Cart</button></a>
         </div>
     </div>
 </div>

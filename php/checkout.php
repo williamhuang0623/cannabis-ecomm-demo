@@ -19,13 +19,13 @@ ini_set('display_errors', true);
     }
     </style>
 </head>
-    
+
 <body>
 <header>
     <img src="../img/logo.png">
 </header>
 <div class="jumbotron">
-    <h1>Thanks for Ordering!</h1> 
+    <h1>Thanks for Ordering!</h1>
 </div>
 <div class="container">
    <?php
@@ -43,7 +43,7 @@ ini_set('display_errors', true);
                 }
             }
             fclose($input);
-            
+
             if ($iterate) {
                 $input = fopen("../info.txt", "r");
                 $output = fopen("../output.txt", "w");
@@ -71,33 +71,33 @@ ini_set('display_errors', true);
     while (!feof($input)) {
         $line = fgets($input);
         if ($line != "") {
-            fwrite($info_file, $line); 
+            fwrite($info_file, $line);
         }
     }
     fclose($info_file);
     fclose($input);
-    
-    //Create Email Message 
+
+    //Create Email Message
     $message = "Thank you for your order! \n\n Here is your order summary: \n";
     foreach($_POST as $key => $value) {
         if ($key != "submit") {
-            $message .= $key . " " . $value . "\n";    
+            $message .= $key . " " . $value . "\n";
         }
     }
     $message .= "\n Please let us know if there was a problem with your order.";
-    
+
     $to = $_COOKIE["email"] or $_COOKIE[" email"];
     $subject = "Order Confirmation";
     $headers = "From: wwh237@i6.cims.nyu.edu"."\r\n".
             "Reply-To: " . $to . "\r\n".
             "X-Mailer: PHP/" . phpversion();
-           
-    mail($to,$subject, $message,$headers); 
+
+    mail($to,$subject, $message,$headers);
     ?>
     <div class="row">
         <h2 id="welcome"></h2>
         <h4 id="email"></h4>
-        <a href="index.php"><button id="returnHome" class="submit">Return to Home</button></a>
+        <a href="../main.php"><button id="returnHome" class="submit">Return to Home</button></a>
     </div>
 </div>
 <footer></footer>
@@ -121,7 +121,7 @@ ini_set('display_errors', true);
             }
             return "";
         }
-        
+
         let welcome = document.getElementById("welcome");
         let email = document.getElementById("email");
         let output = checkCookies();

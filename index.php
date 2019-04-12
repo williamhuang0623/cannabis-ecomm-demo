@@ -7,101 +7,71 @@ ini_set('display_errors', true);
 <html>
 <head>
     <title>Assignment 8: Cannabis Cart</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="php/shopping.css" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <style>
-        #update {
-            margin-bottom: -20px;
-        }
-    </style>
+    <link href="style.css" rel="stylesheet" type="text/css">
 </head>
-
-<body>
-<header>
-    <img src="img/logo.png">
-</header>
-<div class="jumbotron">
-    <h1>Cannabis Shopping Cart</h1>
-</div>
-<h2 id="welcome"></h2>
-<form method="POST" action="cart_summary.php">
-<div class="container">
-    <?php
-    $file = fopen("info.txt", "r");
-    $counter = 0;
-    while(!feof($file)) {
-        $line = fgets($file);
-        if ($line != "") {
-            if ($counter%4 == 0) {
-            echo "<div class='row'>";
-            }
-
-            $array = explode(",", $line);
-            echo "<div class='col-sm-3'>";
-            echo "<h4>" . $array[0] . "</h4>";
-            if ((int)$array[2] == 0) {
-                echo "<img src='img/outofstock.jpg' class='row-image'>";
-                echo "<p> Stock: " . $array[2] . "oz</p>";
-                echo "<p> Price: $" . $array[3] . "</p>";
-
-            } else {
-                echo "<img src='img/" . $array[1] . "' class='row-image'>";
-                echo "<p> Stock: " . $array[2] . "oz</p>";
-                echo "<p> Price: $" . $array[3] . "</p>";
-                //echo "<button class='order' id='" . $array[4] . "'>ORDER</button>";
-                echo "<input type='text' class='order' value='ORDER' id='" . $array[4] . "' name='" . $array[4] . "' readonly >";
-            }
-            echo "</div>";
-
-            if ($counter%4 == 3) {
-                echo "</div>";
-            }
-            $counter++;
-        }
-    }
-    fclose($file);
-    ?>
+<body onload="showModal()">
+    <div id="welcome">
+        <form action="main.php" method="POST">
+        <h3>Assignment 8: Cannabis Shopping Cart</h3>
+        <h4 id="message"></h4>
+        <div class="bottomMargin" id="bottomMargin">
+            <h5>First Name: </h5>
+            <input type="text" name="firstName">
+            <h5>Last Name: </h5>
+            <input type="text" name="lastName">
+            <h5>Email: </h5>
+            <input type="text" name="email" id="email">
+            <span>@nyu.edu</span>
+        </div>
+            <input type="submit" id="enter" class="enter" value="Click Here to Enter">
+        </form>
     </div>
-    <input type="submit" id="update" name="submit" value="submit">
-    <a href="php/change_stock.php"><button type="button" class="submit">Change Stock (Merchant Portal)</button></a>
-</form>
-<footer></footer>
+    <!--- Modal ---->
+    <div class="modal hide" id="modal">
+        <div class="container">
+            <h4>You must be 21 years old or older to continue!</h4>
+            <button id="continue">I am 21 years old</button>
+        </div>
+    </div>
 </body>
     <script src="writeCookies.js" type="text/javascript"></script>
     <script>
-        let message = checkCookies();
-        let welcomeMessage = document.getElementById("welcome");
-        if (!message == "") {
-            welcomeMessage.innerHTML = "Welcome, " + message + "! Please make your selections.";
+        let modal = document.getElementById("modal");
+        let welcome = document.getElementById("welcome");
+        let hide = document.getElementById("hide");
+        let enter = document.getElementById("enter");
+        let continueButton = document.getElementById("continue");
+        let bottomMargin = document.getElementById("bottomMargin");
+
+        function showModal() {
+            if (modal.classList.contains("hide")) {
+                modal.classList.remove("hide");
+            }
+
+            if (!modal.classList.contains("hide")) {
+                welcome.classList.add("hide");
+            }
         }
 
-        //JQUERY BUTTONS
-        $.fn.toggleVal = function(t1, t2){
-            if (this.val() == t1) this.val(t2);
-            else                   this.val(t1);
-            return this;
-        };
-        $.fn.toggleText = function(t1, t2){
-            if (this.text() == t1) this.text(t2);
-            else                   this.text(t1);
-            return this;
-        };
-        $('.order').on('click', function() {
-            let id = $(this).attr("id");
-            $("#"+id).toggleClass("red");
-            $("#"+id).toggleVal("ORDER", "IN CART");
-            return false;
-        })
-
-        let update = document.getElementById("update");
-        update.addEventListener("click", function(event) {
-            let x = formSubmit();
-            if (!x) {
-                event.preventDefault()
+        function showRest() {
+            if (welcome.classList.contains("hide")) {
+                welcome.classList.remove("hide");
             }
+            if (!modal.classList.contains("hide")) {
+                modal.classList.add("hide");
+            }
+        }
+        enter.addEventListener("click", function() {
+            writeCookies(this.form);
         });
+
+        continueButton.addEventListener("click", showRest);
+        let word = checkCookies();
+        let message = document.getElementById('message');
+        if (word != "") {
+            console.log(word);
+            message.innerHTML = "Welcome, " + word + "!";
+            bottomMargin.classList.add("hide");
+        }
     </script>
 </html>
