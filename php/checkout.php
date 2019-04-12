@@ -88,7 +88,7 @@ ini_set('display_errors', true);
 
     $to = $_COOKIE["email"] or $_COOKIE[" email"];
     $subject = "Order Confirmation";
-    $headers = "From: wwh237@i6.cims.nyu.edu"."\r\n".
+    $headers = "From: cannibasfactory@cannabis.com"."\r\n".
             "Reply-To: " . $to . "\r\n".
             "X-Mailer: PHP/" . phpversion();
 
