@@ -55,10 +55,6 @@ h3 {
 #welcome form {
     text-align: center;
 }
-#email {
-    min-width: 40px;
-    width: 100px;
-} 
 .bottomMargin {
     margin-bottom: 20px;
     font-size: 1.5em;

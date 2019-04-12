@@ -18,12 +18,7 @@ function writeCookies(form) {
         alert("Last name field cannot be blank");
         return false;
     }
-    for (let i = 0; i<email.length; i++) {
-        if (email[i] == "@") {
-            alert("Invalid email.");
-            return false;
-        }
-    }
+
     if (email.length < 1) {
         alert("Email length not valid. Please enter email with at least one character.");
         return false;
