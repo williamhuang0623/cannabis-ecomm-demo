@@ -27,7 +27,7 @@ ini_set('display_errors', true);
     <h1>Cannabis Shopping Cart</h1>
 </div>
 <h2 id="welcome"></h2>
-<form method="POST" action="cart_summary.php">
+<form method="POST" action="php/cart_summary.php">
 <div class="container">
     <?php
     $file = fopen("info.txt", "r");
