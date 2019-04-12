@@ -21,7 +21,6 @@ ini_set('display_errors', true);
             <input type="text" name="lastName">
             <h5>Email: </h5>
             <input type="text" name="email" id="email">
-            <span>@nyu.edu</span>
         </div>
             <input type="submit" id="enter" class="enter" value="Click Here to Enter">
         </form>

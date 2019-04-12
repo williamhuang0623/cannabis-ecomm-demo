@@ -1,14 +1,14 @@
 function writeCookies(form) {
-    
+
     let message = document.getElementById('message');
     if (!message.innerHTML == "") {
         return
     }
-    
+
     let fname = form.firstName.value;
     let lname = form.lastName.value;
     let email = form.email.value;
-    
+
     if (fname == "") {
         alert("First name field cannot be blank");
         return false;
@@ -28,8 +28,8 @@ function writeCookies(form) {
         alert("Email length not valid. Please enter email with at least one character.");
         return false;
     }
-    
-    email = email + "@nyu.edu";
+
+    email = email;
     let expire = new Date();
     expire = expire.getMilliseconds() + 60000*30;
     if(document.cookie == "") {
@@ -50,7 +50,7 @@ function checkCookies() {
         for (let i = 0; i < cookies.length; i++) {
             let cookieName = cookies[i].split("=")[0];
             let cookieValue = cookies[i].split("=")[1];
-            
+
             if (cookieName == "firstName") {
                 firstName = cookieValue;
             }
@@ -78,7 +78,7 @@ function validateInputs() {
 }
 function formSubmit() {
     let x = validateInputs();
-    
+
     if (x) {
         return true;
     } else {
